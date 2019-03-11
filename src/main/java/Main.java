@@ -1,4 +1,3 @@
-
 public class Main {
 
 	public static void main(String[] args) {
@@ -7,5 +6,5 @@ public class Main {
 		tree.goLeafDown();
 		System.out.println("depth: " + tree.smallestValue + ", value: " + tree.resultLeaf.formattedNameWithParents);
 	}
-	
+
 }

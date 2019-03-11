@@ -10,7 +10,6 @@ public class BinaryTree {
 	Leaf resultLeaf = null;
 
 	void goLeafDown() {
-
 		Queue<Leaf> nodes = new LinkedList<>();
 		nodes.add(root);
 		int depth = 0, minDepth = Integer.MAX_VALUE;
@@ -35,7 +34,6 @@ public class BinaryTree {
 				current.left.formattedNameWithParents = current.formattedNameWithParents + "-" + current.left.name;
 				nodes.add(current.left);
 			}
-
 			depth++;
 		}
 		smallestValue = minDepth;
@@ -57,18 +55,42 @@ public class BinaryTree {
 		this.root.left.left.right = new Leaf(9);
 
 		this.root.left.right.left = new Leaf(10);
-		/*this.root.left.right.right = new Leaf(11);
-
-		this.root.right.left.left = new Leaf(12);
-		this.root.right.left.right = new Leaf(13);
-
-		this.root.right.right.left = new Leaf(14);
-		this.root.right.right.right = new Leaf(15);
-
-		this.root.left.left.left.left = new Leaf(15);
-		this.root.left.left.left.right = new Leaf(16);
-
-		this.root.left.left.right.left = new Leaf(17);*/
+		/*
+		 * this.root.left.right.right = new Leaf(11);
+		 * 
+		 * this.root.right.left.left = new Leaf(12); this.root.right.left.right = new
+		 * Leaf(13);
+		 * 
+		 * this.root.right.right.left = new Leaf(14); this.root.right.right.right = new
+		 * Leaf(15);
+		 * 
+		 * this.root.left.left.left.left = new Leaf(15); this.root.left.left.left.right
+		 * = new Leaf(16);
+		 * 
+		 * this.root.left.left.right.left = new Leaf(17);
+		 */
 	}
+
+	public boolean isEmpty() {
+		return root == null;
+	}
+	
+	public boolean containsLeaf(int value) {
+        return containsLeafRecursive(root, value);
+    }
+
+    private boolean containsLeafRecursive(Leaf current, int value) {
+        if (current == null) {
+            return false;
+        }
+
+        if (value == current.value) {
+            return true;
+        }
+
+        return value < current.value
+          ? containsLeafRecursive(current.right, value)
+          : containsLeafRecursive(current.left, value);
+    }
 
 }
